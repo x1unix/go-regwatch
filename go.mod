@@ -1,3 +1,3 @@
-module regwatch
+module github.com/x1unix/go-regwatch
 
-go 1.12
+go 1.11

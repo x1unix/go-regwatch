@@ -1,7 +1,6 @@
 #ifndef WATCH_H
 #define WATCH_H
 
-#define DEBUG 3
 #include <windows.h>
 #include <stdlib.h>
 
@@ -13,10 +12,12 @@
  #define DEBUG_PRINT(fmt, ...) /* Don't do anything in release builds */
 #endif
 
+typedef struct Watcher {
+	HKEY hKey;
+	HANDLE hEvent;
+} Watcher;
 
-typedef boolean (*callback)(char*, long);
-
-long reg_add_listener(callback cb, HKEY hMainKey, char* regPath);
-long reg_listen(HKEY hMainKey, char* regPath);
-
+long watcher_create(void* hive, char* regPath, Watcher* out);
+long watcher_await(Watcher* out, long timeout, boolean* changed);
+long watcher_close(Watcher* out);
 #endif
