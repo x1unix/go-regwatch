@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const keyPath = `SOFTWARE\SAAZOD\ManagedPosix`
+const keyPath = `SOFTWARE\Foo\Bar`
 
 func TestExample(t *testing.T) {
 	runtime.LockOSThread()
